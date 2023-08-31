@@ -10,10 +10,12 @@ public class Login {
     private List<String> usuarios = new ArrayList<String>();
     private List<String> senhas = new ArrayList<String>();
 
+    public Login(){
+        preencherDados();
+    }
+
 
     public Boolean setLogin(String user, String password){
-        preencherDados();
-
         if (!user.equals("") && !password.equals("")){
             this.usuario = user;
             this.senha = password;

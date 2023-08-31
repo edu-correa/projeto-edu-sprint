@@ -7,13 +7,19 @@ import java.util.List;
 public class Login {
     private String usuario;
     private String senha;
-    private List<String> usuarios = new ArrayList<String>();
-    private List<String> senhas = new ArrayList<String>();
+    private List<Usuario> usuarios = new ArrayList<>();
+    private Boolean isLogado;
+
 
     public Login(){
         preencherDados();
+        isLogado = false;
     }
 
+    @Override
+    public String toString() {
+        return "OLá login";
+    }
 
     public Boolean setLogin(String user, String password){
         if (!user.equals("") && !password.equals("")){
@@ -27,39 +33,43 @@ public class Login {
     }
 
     private void preencherDados(){
-        if(usuarios.size() == 0 && senhas.size() == 0){
-            usuarios.add("edu@gmail.com");
-            senhas.add("123");
+        if(usuarios.size() == 0){
 
-            usuarios.add("gragas@gmail.com");
-            senhas.add("321");
+            usuarios.add(new Usuario("edu@gmail.com","123"));
 
-            usuarios.add("davi@gmail.com");
-            senhas.add("555");
+            usuarios.add(new Usuario("gragas@gmail.com","321"));
 
-            usuarios.add("pablo@gmail.com");
-            senhas.add("666");
+            usuarios.add(new Usuario("davi@gmail.com", "555"));
+
+            usuarios.add(new Usuario("pablo@gmail.com", "555"));
         }
     }
 
     private boolean checkLogin(){
-        Integer numEncontrado = -1;
-        Boolean isFind = false;
+        Usuario verificacao;
         for (Integer i = 0; i<usuarios.size(); i++){
-            if (usuarios.get(i).equals(usuario)){
-                isFind = true;
-                numEncontrado = i;
-                break;
-            }
-        }
-        if(isFind){
-            if (senhas.get(numEncontrado).equals(senha)){
+            verificacao = usuarios.get(i);
+            if (verificacao.getEmail().equals(usuario) && verificacao.getSenha().equals(senha)){
+                isLogado = true;
                 return true;
-            } else {
-                return false;
             }
         }
         return false;
     }
 
+    public void cadastrarUsuario(Usuario usuario){
+        if(isLogado){
+            this.usuarios.add(usuario);
+        } else{
+            System.out.println("Você não está logado!");
+        }
+    }
+
+    public List<Usuario> consultarUsuario(){
+        if (isLogado){
+            return usuarios;
+        } else{
+            return null;
+        }
+    }
 }

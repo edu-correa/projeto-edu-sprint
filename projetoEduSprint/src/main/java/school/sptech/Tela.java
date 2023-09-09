@@ -25,7 +25,23 @@ public class Tela {
         System.out.println("Logado!");
         return true;
     }
+    public void primeiraTela(Scanner l, Login entrar){
+        Integer escolha;
+        Scanner num = new Scanner(System.in);
+        do{
+            System.out.print("""
+                    O que deseja fazer?
+                    1 - Funcionalidades
+                    2 - Sair
+                    """);
+            escolha = num.nextInt();
 
+            if (escolha == 1){
+                funcionalidades(l, entrar);
+            }
+        } while (escolha != 2);
+        System.out.println("-------------------------------------\nFinalizado");
+    }
     public void funcionalidades(Scanner l, Login entrar){
         Integer escolha;
         Scanner num = new Scanner(System.in);
@@ -34,7 +50,7 @@ public class Tela {
                     O que deseja fazer?
                     1 - Cadastrar novos usuários
                     2 - Consultar usuários
-                    3 - Sair
+                    3 - Voltar
                     4 - Verificar o uso da maquina
                     """);
             escolha = num.nextInt();
@@ -54,6 +70,5 @@ public class Tela {
                 }
             }
         } while (escolha != 3);
-        logar(entrar, l);
     }
 }

@@ -11,7 +11,7 @@ public class Main {
         Tela tela = new Tela();
 
         if (tela.logar(entrar, l)){
-            tela.funcionalidades(l, entrar);
+            tela.primeiraTela(l, entrar);
         } else{
             System.out.println("Encerrado");
         }
